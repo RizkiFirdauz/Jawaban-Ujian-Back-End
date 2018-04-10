@@ -1,0 +1,154 @@
+const express = require('express');
+const app     = express();
+const mysql   = require('mysql');
+const cors    = require('cors');
+const bodyParser = require('body-parser')
+const db = mysql.createConnection({
+    host     : 'localhost',
+    user     : 'root',
+    password : '12345',
+    database : 'restaurant'
+});
+db.connect();
+
+app.use(cors());
+app.use(bodyParser.json());
+
+
+//=> UNTUK KARYAWAN <=
+
+app.post('/karyawan',(req,res)=>{
+    var data={idkaryawan:118,nama:"LUSI",gender:"PEREMPUAN",role_kerja:"CHEFF",gaji:5000000}
+    var sql = 'INSERT INTO karyawan SET ?';
+    db.query(sql,data,(err,res1)=>{
+        if(err) throw err;
+        console.log(res);
+    }); 
+});
+
+app.get('/karyawan',(req,res)=>{
+    var sql = 'SELECT * FROM karyawan';
+    db.query(sql,(err,res1)=>{
+        if(err) throw err;
+        console.log(res);
+    }); 
+});
+
+app.patch('/karyawan',(req,res)=>{
+    var nama="LUSI"
+    var sql = 'UPDATE karyawan SET nama="RESTI" WHERE nama=?';
+    db.query(sql,nama,(err,res1)=>{
+        if(err) throw err;
+        console.log(res);
+    }); 
+});
+
+app.delete('/karyawan',(req,res)=>{
+    var nama="RESTI"
+    var sql = 'DELETE from karyawan WHERE nama=?';
+    db.query(sql,nama,(err,res1)=>{
+        if(err) throw err;
+        console.log(res);
+    }); 
+});
+
+//=> UNTUK STOCK BAHAN <=
+
+app.patch('/stock',(req,res)=>{
+    var id="211"
+    var sql = 'UPDATE idstock_bahan SET stockbahan=stockbahan-5 WHERE idstock_bahan=?';
+    db.query(sql,id,(err,res1)=>{
+        if(err) throw err;
+        console.log(res);
+    });
+});
+
+app.delete('/stock',(req,res)=>{
+    var id="212"
+    var sql = 'DELETE from stockbahan WHERE idstock_bahan=?';
+    db.query(sql,id,(err,res1)=>{
+        if(err) throw err;
+        console.log(res);
+    }); 
+});
+//untuk stok -end-
+
+
+//=> UNTUK FOOD AND BEVERAGE
+app.post('/makanan',(req,res)=>{
+    var data={idmenu:322,namefoodbeverage:"SATE DENMARK",menutype:"MAIN COURSE",harga:35000}
+    var sql = 'INSERT INTO menu SET ?';
+    db.query(sql,data,(err,res1)=>{
+        if(err) throw err;
+        console.log(res);
+    }); 
+});
+
+app.get('/makanan',(req,res)=>{
+    var sql = 'SELECT * FROM menu';
+    db.query(sql,(err,res1)=>{
+        if(err) throw err;
+        console.log(res);
+    }); 
+});
+
+app.patch('/dmkn',(req,res)=>{
+    var id="322"
+    var sql = 'UPDATE menu SET idmenu="311" WHERE idmenu=?';
+    db.query(sql,id,(err,res1)=>{
+        if(err) throw err;
+        console.log(res);
+        res.send(res1);
+    }); 
+});
+
+app.delete('/dmkn',(req,res)=>{
+    var id="312"
+    var sql = 'DELETE from menu WHERE idmenu=?';
+    db.query(sql,id,(err,res1)=>{
+        if(err) throw err;
+        console.log(res);
+        res.send(res1);
+    }); 
+});
+
+//=> UNTUK CABANG <=
+app.post('/cabang',(req,res)=>{
+    var data={idcabang:516, alamatcabang:"MAKASAR"}
+    var sql = 'INSERT INTO cabang SET ?';
+    db.query(sql,data,(err,res1)=>{
+        if(err) throw err;
+        console.log(res);
+    }); 
+});
+
+app.get('/cabang',(req,res)=>{
+    var sql = 'SELECT * FROM cabang';
+    db.query(sql,(err,res1)=>{
+        if(err) throw err;
+        console.log(res);
+    }); 
+});
+
+app.patch('/cabang',(req,res)=>{
+    var id="516"
+    var sql = 'UPDATE cabang SET alamatcabang="RIAU" WHERE idcabang=?';
+    db.query(sql,id,(err,res1)=>{
+        if(err) throw err;
+        console.log(res);
+        res.send(res1);
+    }); 
+});
+
+app.delete('/dresto',(req,res)=>{
+    var id="514"
+    var sql = 'DELETE from cabang WHERE idcabang=?';
+    db.query(sql,id,(err,res1)=>{
+        if(err) throw err;
+        console.log(res);
+    }); 
+});
+
+app.listen(3200, ()=>{
+    console.log('Server @Port 3200')
+});

@@ -1,0 +1,76 @@
+jawaban soal no.3
+
+1. buka terminal cmd/visual studio code:
+   ketik cd C:\Program Files\MongoDB\Server\3.6\bin 
+   kemudian ketik mongod
+
+2. jika sudah terhubung pada port 27017
+   buka terminal cmd/visual studio code satu lagi
+   ketik cd C:\Program Files\MongoDB\Server\3.6\bin
+   kemudian ketik mongo
+
+3. ketik db.createUser({user:"andi",pwd:"anditopsecret",roles:["dbAdmin"]});
+
+4. ketik db.createUser({user:"budi",pwd:"buditopsecret",roles:["readWrite"]});
+
+5. ketik show dbs //untuk melihat database yang ada
+
+6. ketik use kampus //untuk membuat sekaligus db "kampus"
+
+7. ketik db.createCollection('dosen') //untuk membuat tabel dosen
+
+8. ketik db.createCollection('mahasiswa') //untuk membuat tabel dosen
+
+9. ketik db.dosen.insert([
+    {nama:"Caca",
+    usia:28,
+    asal:"Jakarta",
+    bidang:"Fisika Astrologi",
+    titel:"S2",
+    status:"Honorer",
+    nip:123,
+    matkul:["Metrologi","Kosmologi","Kalkulus"]},
+
+    {nama:"Dedi",
+    usia:29,
+    asal:"Yogyakarta",
+    bidang:"Fisika Terapan",
+    titel:"S3",
+    status:"PNS",
+    nip:456,
+    matkul:["Instrumentasi","Elektronika","Fisika Dasar"]},
+
+    {nama:"Euis",
+    usia:30,
+    asal:"Bandung",
+    bidang:"Fisika Teoretik",
+    titel:"S1",
+    status:"Honorer",
+    nip:789,
+    matkul:["Fisika Dasar","Fisika Modern","Kalkulus"]}
+   ]);
+
+10.ketik db.mahasiswa.insert([
+    {nama:"Faza",
+    usia:19,
+    asal:"Aceh",
+    prodi:"Fisika",
+    angkatan:2017,
+    nim:123}
+
+    {nama:"Gilang",
+    usia:20,
+    asal:"Semarang",
+    prodi:"Fisika",
+    angkatan:2017,
+    nim:456}
+
+    {nama:"Hanafi",
+    usia:19,
+    asal:"Makassar",
+    prodi:"Fisika",
+    angkatan:2017,
+    nim:789}
+
+   ]); 
+
